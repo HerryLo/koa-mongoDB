@@ -10,7 +10,9 @@ import dbConnect from './monoose/dbConnect'
 
 const app = new Koa();
 app.use(staticFiles(path.resolve(__dirname, "./public")))
-app.use(koaBody({multipart: true}));
+app.use(koaBody({
+    multipart: true
+}));
 app.use(session(config.session, app));
 
 /** 开启mongoose */
