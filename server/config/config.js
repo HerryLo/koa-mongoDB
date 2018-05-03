@@ -8,6 +8,7 @@ export default {
         signed: true,
         rolling: false,
         renew: false,
+        store: new MongooseStore()
     },
     db: {
         url: 'mongodb://localhost/test'
