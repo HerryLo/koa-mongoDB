@@ -26,10 +26,11 @@ class User {
                 password: password
             });
             if (result[0]) {
+                // sign with default (HMAC SHA256)
                 const token = jwt.sign({
                     id: result[0]._id
                 }, config.secret, {
-                    expiresIn: 3600 //秒到期时间
+                    expiresIn: '2days' //到期时间
                 });
                 ctx.body = {
                     code: 0,
