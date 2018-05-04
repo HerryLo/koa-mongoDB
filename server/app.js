@@ -6,8 +6,11 @@ import staticFiles from 'koa-static'
 import path from 'path'
 import routers from './router/index'
 import config from './config/config'
-import dbConnect from './monoose/dbConnect'
 import redisStore from 'koa-redis'
+import jwt from 'jsonwebtoken'
+import cors from 'kcors'
+import json from 'koa-json'
+import logger from 'koa-logger'
 
 const app = new Koa();
 
@@ -30,10 +33,9 @@ app.use(session({
 
 app.use(staticFiles(path.resolve(__dirname, "./public")))
 
-/** 开启mongoose */
-dbConnect();
-
 /** 路由配置 */
 routers(app)
 
-app.listen(12345);
+app.listen(12345, ()=> {
+    console.log('node Server open: localhost:12345')
+});
