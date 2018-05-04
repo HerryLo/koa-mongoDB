@@ -1,4 +1,4 @@
-import UserModel from '../model/UserModel'
+import { UserModel } from '../monoose/dbConnect'
 
 class User {
     constructor() {
