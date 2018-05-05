@@ -1,3 +1,6 @@
+/**
+ * 需要检查的token的 请求地址
+ */
 const verifyPath = [
     '/api/get'
 ];
@@ -7,7 +10,7 @@ export default {
         url: 'mongodb://localhost/test'
     },
     secret: 'LiuHeng9227fe78182er',
-    port: '12345',
+    port: process.env.port || '12345',
     redis: {
         host: process.env.REDIS_PORT_6379_TCP_ADDR || '127.0.0.1',
         port: process.env.REDIS_PORT_6379_TCP_PORT || 6379,
