@@ -26,9 +26,9 @@ class User {
                 password: password
             });
             if (result[0]) {
-                // sign with default (HMAC SHA256)
                 const token = jwt.sign({
-                    id: result[0]._id
+                    id: result[0]._id,
+                    user: user
                 }, config.secret, {
                     expiresIn: '2days' //到期时间
                 });

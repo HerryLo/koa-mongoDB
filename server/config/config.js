@@ -1,6 +1,22 @@
+const verifyPath = [
+    '/api/get'
+];
+
 export default {
     db: {
         url: 'mongodb://localhost/test'
     },
-    secret: 'LiuHeng9227fe78182er'
+    secret: 'LiuHeng9227fe78182er',
+    port: '12345',
+    redis: {
+        host: process.env.REDIS_PORT_6379_TCP_ADDR || '127.0.0.1',
+        port: process.env.REDIS_PORT_6379_TCP_PORT || 6379,
+        password: process.env.REDIS_PASSWORD || ''
+    },
+    session: {
+        cookie: {
+            maxAge: 60000 * 5
+        }
+    },
+    verifyPath
 }
