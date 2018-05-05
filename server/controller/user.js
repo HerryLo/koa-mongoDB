@@ -30,7 +30,7 @@ class User {
                     id: result[0]._id,
                     user: user
                 }, config.secret, {
-                    expiresIn: '2days' //到期时间
+                    expiresIn: '3h' //到期时间
                 });
                 ctx.body = {
                     code: 0,
