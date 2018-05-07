@@ -95,11 +95,12 @@ class User {
      */
     async getUserInfo(ctx, next) {
         try {
-            const data = ctx.request.session.JSTOKEN;
+            const {id, user} = ctx.state;
             if (data) {
                 const id = data._id;
                 const result = await UserModel.findUser({
-                    _id: id
+                    _id: id,
+                    user: user
                 });
                 if (result[0]) {
                     ctx.body = {

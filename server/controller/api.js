@@ -7,16 +7,9 @@ class Api {
     }
     
     async get(ctx, next) {
-        const state = ctx.state;
-        if (state.id) {
-            ctx.body = {
-                id: state.id,
-                user: state.user
-            };
-        } else {
-            ctx.body = {
-                state
-            };
+        const { id, user } = ctx.state;
+        if(id && user){
+            const file = ctx.file;
         }
     }
 
