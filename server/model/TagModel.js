@@ -7,4 +7,19 @@ const TagSchema = mongoose.Schema({
     createTime: { type: Date, default: Date.now }
 })
 
-module.exports = TagSchema
+TagSchema.statics = {
+    /* 查找 */
+    async find(data) {
+        const result = await this.find(data);
+        return result
+    },
+    /* 创建 */
+    async create(data){
+        const result = await this.create(data);
+        return result;
+    }
+}
+
+const TagModel = mongoose.model('tag', TagSchema);
+
+module.exports = TagModel

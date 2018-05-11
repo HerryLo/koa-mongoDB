@@ -29,6 +29,6 @@ ArticleSchema.statics = {
     }
 }
 
-const ArticleModel = mongoose.model('user', ArticleSchema);
+const ArticleModel = mongoose.model('article', ArticleSchema);
 
 module.exports = ArticleModel
