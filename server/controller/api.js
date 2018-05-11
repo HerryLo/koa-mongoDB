@@ -58,7 +58,6 @@ class Api {
                     data: []
                 }
             }
-            
         } else {
             ctx.body = {
                 code: 1,
@@ -70,6 +69,7 @@ class Api {
 
     /**
      * 检查创建文章参数
+     * @param {*} ctx 
      */
     async checkArtparam(ctx) {
         const data = ctx.request.body.fields;
