@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken'
 import config from '../config/config'
 import {
-    ArticleModel
+    ArticleModel,
+    UserModel
 } from '../monoose/dbConnect'
 import {
     CreateArtimgFs
@@ -12,14 +13,28 @@ class Api {
         this.get = this.get.bind(this);
     }
 
-
     async userlist(ctx, next) {
         const {
             id,
             user
         } = ctx.state;
-        if (id && user) {
-
+        const result = UserModel.find({
+            _id: id,
+            user: user
+        })
+        if (result[0]) {
+            let data = UserModel.find();
+            ctx.body = {
+                code: 0,
+                desc: '成功',
+                data: data
+            }
+        } else {
+            ctx.body = {
+                code: 1,
+                desc: '用户不存在',
+                data: []
+            }
         }
     }
 
@@ -42,16 +57,16 @@ class Api {
         if (result[0]) {
             const imgName = await CreateArtimgFs(file);
             const checkBool = checkArtparam(ctx);
-            if(checkBool){
+            if (checkBool) {
                 const d = await ArticleModel.create(data);
-                if(d){
+                if (d) {
                     ctx.body = {
                         code: 1,
                         desc: '添加成功',
                         data: d
                     }
                 }
-            }else{
+            } else {
                 ctx.body = {
                     code: 1,
                     desc: '请求参数不正确',
@@ -80,8 +95,8 @@ class Api {
             d.desc &&
             d.tag.length > 0) {
             return true
-        }else{
-            return  false
+        } else {
+            return false
         }
     }
 

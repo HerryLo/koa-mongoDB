@@ -9,12 +9,12 @@ const TagSchema = mongoose.Schema({
 
 TagSchema.statics = {
     /* 查找 */
-    async find(data) {
+    async find(data = {}) {
         const result = await this.find(data);
         return result
     },
     /* 创建 */
-    async create(data){
+    async create(data = {}){
         const result = await this.create(data);
         return result;
     }

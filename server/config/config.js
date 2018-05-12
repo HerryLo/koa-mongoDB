@@ -2,7 +2,8 @@
  * 需要检查的token的 请求地址
  */
 const verifyPath = [
-    '/api/get'
+    '/api/userlist',
+    'api/createarticle'
 ];
 
 export default {

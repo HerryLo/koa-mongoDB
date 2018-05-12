@@ -9,12 +9,12 @@ const UserSchema = mongoose.Schema({
 
 UserSchema.statics = {
     /* 查找 */
-    async findUser(data) {
+    async findUser(data = {}) {
         const result = await this.find(data);
         return result
     },
     /* 创建用户 */
-    async createUser(data){
+    async createUser(data = {}){
         const result = await this.create(data);
         return result;
     }
