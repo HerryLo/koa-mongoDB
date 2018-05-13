@@ -3,7 +3,8 @@
  */
 const verifyPath = [
     '/api/userlist',
-    'api/createarticle'
+    '/api/createarticle',
+    '/api/articlelist'
 ];
 
 export default {

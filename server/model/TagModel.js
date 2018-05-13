@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const TagSchema = mongoose.Schema({
-    conent: String,
+    content: String,
     createUserId: String,
     useNumber: Number,
     createTime: { type: Date, default: Date.now }
