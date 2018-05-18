@@ -61,9 +61,10 @@ class User {
                 user,
                 password,
                 photo
-            } = ctx.request.body;
+            } = ctx.request.body.params;
             const result = await UserModel.findUser({
-                user: user
+                user: user,
+                photo: photo
             });
             if (result[0]) {
                 ctx.body = {

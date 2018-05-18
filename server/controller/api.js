@@ -11,7 +11,11 @@ import {
 
 class Api {
     constructor() {
-        this.get = this.get.bind(this);
+        this.userlist = this.userlist.bind(this);
+        this.createArticle = this.createArticle.bind(this);
+        this.articlelist = this.articlelist.bind(this);
+        this.createTag = this.createTag.bind(this);
+        this.checkArtparam = this.checkArtparam.bind(this);
     }
 
     /**
