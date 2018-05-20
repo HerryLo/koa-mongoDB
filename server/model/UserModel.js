@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 const UserSchema = mongoose.Schema({
     user: String,
     password: String,
-    photo: { type: Number, min: 10, max: 20 },
+    photo: { type: String, min: 10, max: 20 },
+    isadmin: Boolean,
     regtime: { type: Date, default: Date.now }
 });
 

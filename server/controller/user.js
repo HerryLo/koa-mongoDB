@@ -25,12 +25,13 @@ class User {
                 user: user,
                 password: password
             });
+            console.log(ctx.req);
             if (result[0]) {
                 const token = jwt.sign({
                     id: result[0]._id,
                     user: user
                 }, config.secret, {
-                    expiresIn: '3h' //到期时间
+                    expiresIn: '10 days' //到期时间
                 });
                 ctx.body = {
                     code: 0,
@@ -40,7 +41,7 @@ class User {
                 }
             } else {
                 ctx.body = {
-                    code: 0,
+                    code: 1,
                     desc: '登录失败'
                 }
             }
@@ -61,7 +62,7 @@ class User {
                 user,
                 password,
                 photo
-            } = ctx.request.body.params;
+            } = ctx.request.body;
             const result = await UserModel.findUser({
                 user: user,
                 photo: photo
@@ -69,16 +70,29 @@ class User {
             if (result[0]) {
                 ctx.body = {
                     code: 1,
-                    desc: '用户名已存在',
-                    data: {}
+                    desc: '用户已存在',
+                    data: result[0]
                 }
             } else {
-                ctx.body = {
-                    code: 0,
-                    desc: '注册成功',
-                    data: {
-                        user: user,
-                        photo: photo
+                const result = await UserModel.createUser({
+                    user: user,
+                    password: password,
+                    photo: photo
+                });
+                if(result) {
+                    ctx.body = {
+                        code: 0,
+                        desc: '注册成功',
+                        data: {
+                            user: user,
+                            photo: photo
+                        }
+                    }
+                }else{
+                    ctx.body = {
+                        code: 0,
+                        desc: '注册失败',
+                        data: {}
                     }
                 }
             }
