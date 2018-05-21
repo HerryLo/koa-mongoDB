@@ -1,6 +1,6 @@
 # koa
 
-目前处于开发过程中，觉得不错的可以star下。
+目前处于开发过程中，还未部署生产环境，觉得不错的可以star下。
 
 使用koa+mongoose 开发，配合babel-register编译Es6/7。
 
@@ -27,5 +27,7 @@ server下为目录结构:
 ```
 $ npm install 
 
-$ npm run dev //本地服务
+$ mongod  //开启mongoDB
+
+$ npm run dev //本地测试服务
 ```
