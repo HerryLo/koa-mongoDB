@@ -15,11 +15,11 @@ server下为目录结构:
 .
 |——server
 |  |——config  //全局配置
-|  |——controller  //对应路由的逻辑处理
-|  |  |—— api.js  //api接口
-|  |  |—— user.js  //用户接口
+|  └──controller  //对应路由的逻辑处理
+|  |  |—— api.js  //api接口
+|  |  └── user.js  //用户接口
 |  |——middleware  //路由中间件
-|  |  |—— index.js  中间件
+|  |  └── index.js  中间件
 |  |——model  //mongoose数据库模型
 |  |——mongoose  //数据库方法暴露
 |  |——public //静态资源目录
