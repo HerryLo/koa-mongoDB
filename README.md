@@ -11,9 +11,9 @@
 * 文件结构采用MC拆分
 
 server下为目录结构:
-```
-|-server|
-|--controller|
+```cmd
+|-server
+|--controller
 ```
 
 ```
