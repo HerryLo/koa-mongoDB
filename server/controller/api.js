@@ -34,7 +34,7 @@ class Api {
                 user: user
             })
             if (result[0]) {
-                let data = UserModel.find();
+                let data = UserModel.find({});
                 ctx.body = {
                     code: 0,
                     desc: '成功',
