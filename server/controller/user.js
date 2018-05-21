@@ -111,9 +111,7 @@ class User {
     async getUserInfo(ctx, next) {
         try {
             const {id, user} = ctx.state;
-            if (data) {
-                const id = data._id;
-                const result = await UserModel.findUser({
+            const result = await UserModel.findUser({
                     _id: id,
                     user: user
                 });
@@ -121,20 +119,14 @@ class User {
                     ctx.body = {
                         code: 0,
                         desc: "成功",
-                        data: data
+                        data: result[0]
                     }
                 } else {
                     ctx.body = {
                         code: 1,
-                        desc: "服务器出错"
+                        desc: "用户请登录"
                     }
                 }
-            } else {
-                ctx.body = {
-                    code: 1,
-                    desc: "用户请登录"
-                }
-            }
         } catch (err) {
             console.log(err);
             await next();
