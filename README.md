@@ -11,17 +11,18 @@
 * 文件结构采用MC拆分
 
 server下为目录结构:
-```python
-|--server
-|---- config  //全局配置
-|---- controller  //对应路由的逻辑处理
-|---- middleware  //路由中间件
-|---- model  //mongoose数据库模型
-|---- mongoose  //数据库方法暴露
-|---- public //静态资源目录
-|---- router //路由文件
-|---- utils  //公共方法
-|---- app.js //app入口文件
+```
+.
+|——server
+|   ——config  //全局配置
+|   ——controller  //对应路由的逻辑处理
+|   ——middleware  //路由中间件
+|   ——model  //mongoose数据库模型
+|   ——mongoose  //数据库方法暴露
+|   ——public //静态资源目录
+|   —— router //路由文件
+|   —— utils  //公共方法
+|   ——app.js //app入口文件
 ```
 
 ```
