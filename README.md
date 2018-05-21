@@ -11,9 +11,17 @@
 * 文件结构采用MC拆分
 
 server下为目录结构:
-```cmd
-|-server
-|--controller
+```python
+|--server
+|---- config
+|---- controller
+|---- middleware
+|---- model
+|---- mongoose
+|---- public
+|---- router
+|---- utils
+|---- app.js
 ```
 
 ```
