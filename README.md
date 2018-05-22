@@ -42,3 +42,6 @@ $ mongod  //开启mongoDB
 
 $ npm run dev //本地测试服务
 ```
+
+## API接口
+  [后端 接口文档](https://github.com/HerryLo/koa-mongoDB/blob/master/API.md)
