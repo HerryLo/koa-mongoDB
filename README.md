@@ -44,3 +44,4 @@ $ npm run dev //本地测试服务
 ```
 
 ## API接口
+[接口文档](https://github.com/HerryLo/koa-mongoDB/blob/master/API.md)
