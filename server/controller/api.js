@@ -29,12 +29,12 @@ class Api {
             user
         } = ctx.state;
         try {
-            const result = UserModel.find({
+            const result = await UserModel.find({
                 _id: id,
                 user: user
             })
-            if (result[0]) {
-                let data = UserModel.find({});
+            if (result[0].isadmin) {
+                let data = await UserModel.find({});
                 ctx.body = {
                     code: 0,
                     desc: '成功',

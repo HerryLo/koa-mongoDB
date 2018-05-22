@@ -1,4 +1,5 @@
 import config from '../config/config'
+import jwt from 'jsonwebtoken'
 
 /**
  * 中间件 检查token是否失效
@@ -23,8 +24,10 @@ async function verify(ctx, next) {
     if (isVerify) {
         let jwtVerify;
         try {
+            // console.log(config.secret)         
             jwtVerify = await jwt.verify(settoken, config.secret);
         } catch (err) {
+            console.log(err);
             ctx.throw(401, 'JsonWebTokenError', {
                 name: 'JsonWebTokenError'
             });

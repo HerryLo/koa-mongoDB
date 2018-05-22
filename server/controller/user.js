@@ -25,13 +25,12 @@ class User {
                 user: user,
                 password: password
             });
-            console.log(ctx.req);
             if (result[0]) {
                 const token = jwt.sign({
                     id: result[0]._id,
                     user: user
                 }, config.secret, {
-                    expiresIn: '10 days' //到期时间
+                    expiresIn: '100h' //到期时间
                 });
                 ctx.body = {
                     code: 0,
@@ -61,7 +60,8 @@ class User {
             const {
                 user,
                 password,
-                photo
+                photo,
+                isadmin
             } = ctx.request.body;
             const result = await UserModel.findUser({
                 user: user,
@@ -77,7 +77,8 @@ class User {
                 const result = await UserModel.createUser({
                     user: user,
                     password: password,
-                    photo: photo
+                    photo: photo,
+                    isadmin: isadmin || false
                 });
                 if(result) {
                     ctx.body = {
