@@ -26,7 +26,7 @@
 |tag          |Y        |Array    |标签 |
 |userId       |Y        |string   |用户ID|
 
-### 2.用户创建的文章列表
+### 2.文章列表
 
 示例接口
 ``` http://localhost:12345/api/articlelist```
