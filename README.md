@@ -44,11 +44,11 @@ $ npm run dev //本地测试服务
 ```
 
 ## API接口
-
+```
 登录
 |  |—— user/login                  路由文件接口
 |  |—— user.js                     路由文件
-```
+
 |   |user|password|
 |参数|String|String|
 ```
