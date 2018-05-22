@@ -42,3 +42,8 @@ $ mongod  //开启mongoDB
 
 $ npm run dev //本地测试服务
 ```
+
+## API接口
+
+|  |—— router                     路由文件接口
+|  |—— router                     路由文件
