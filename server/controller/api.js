@@ -64,7 +64,8 @@ class Api {
             user
         } = ctx.state;
         try {
-            const file = ctx.request.body.files.file;
+            const file = ctx.request.body.files && ctx.request.body.files.file;
+            // const file = ctx.request.body.files.file;
             const data = ctx.request.body.fields;
             const result = await ArticleModel.find({
                 id,
@@ -110,8 +111,7 @@ class Api {
                 }
             }
         } catch (e) {
-            console.log(e);
-            await next();
+            ctx.throw(e);
         }
     }
 

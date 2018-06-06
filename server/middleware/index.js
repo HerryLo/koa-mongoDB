@@ -67,7 +67,26 @@ async function tokenError(ctx, next) {
     });
 }
 
+/**
+ * error处理
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+async function errorHandler(ctx, next) {
+    try {
+        await next()
+    } catch (err) {
+        console.log('Server Error', err);
+        ctx.response.status = err.statusCode || err.status || 500
+        ctx.response.body = {
+            message: err.message,
+            status: ctx.response.status
+        }
+    }
+}
+
 module.exports = {
     verify,
-    tokenError
+    tokenError,
+    errorHandler
 }
