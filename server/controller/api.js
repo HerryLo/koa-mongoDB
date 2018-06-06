@@ -71,11 +71,23 @@ class Api {
                 user
             });
             if (result[0]) {
+                // 将图片保存到public
                 const imgName = await this.CreateArtimgFs(file);
+                // 检查参数是否正确
                 const checkBool = checkArtparam(ctx);
                 if (checkBool) {
+                    // 创建标签
                     await this.createTag(ctx, next)
-                    const d = await ArticleModel.create(Object.assign(data));
+                    // 创建文章
+                    const d = await ArticleModel.create({
+                        content: data.content,
+                        userId: id,
+                        title: data.title,
+                        oneNumber: 0,
+                        imgUrl: imgName,
+                        desc: data.desc,
+                        tag: data.tag
+                    });
                     if (d) {
                         ctx.body = {
                             code: 1,
@@ -165,7 +177,7 @@ class Api {
     async checkArtparam(ctx) {
         const data = ctx.request.body.fields;
         const d = data
-        if (d.userId &&
+        if (d && d.userId &&
             d.title &&
             d.imgUrl &&
             d.desc &&
