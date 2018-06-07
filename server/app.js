@@ -38,14 +38,14 @@ app.use(async (ctx, next) => {
     await verify(ctx, next);
 });
 
-/** 异常 */
-app.on('error', (err) => {
-    log.error('server error', err)
-});
-app.use(errorHandler)
-
 /** 路由配置 */
 routers(app)
+
+/** 异常 */
+app.use(errorHandler)
+app.on('error', (err) => {
+    console.error('Server Error', err)
+});
 
 app.listen(config.port, () => {
     console.log(`Node Server open: localhost:${config.port}`)

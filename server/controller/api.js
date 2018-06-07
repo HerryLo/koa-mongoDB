@@ -63,22 +63,21 @@ class Api {
             id,
             user
         } = ctx.state;
+        const file = ctx.request.body.files && ctx.request.body.file;
+        const data = ctx.request.body.fields;
         try {
-            const file = ctx.request.body.files && ctx.request.body.files.file;
-            // const file = ctx.request.body.files.file;
-            const data = ctx.request.body.fields;
-            const result = await ArticleModel.find({
-                id,
-                user
-            });
-            if (result[0]) {
-                // 将图片保存到public
-                const imgName = await this.CreateArtimgFs(file);
-                // 检查参数是否正确
-                const checkBool = checkArtparam(ctx);
-                if (checkBool) {
+            // 检查参数是否正确
+            const checkBool = await this.checkArtparam(ctx.request.body);
+            if (checkBool) {
+                const result = await ArticleModel.find({
+                    id,
+                    user
+                });
+                if (result[0]) {
                     // 创建标签
                     await this.createTag(ctx, next)
+                    // 将图片保存到public
+                    const imgName = await this.CreateArtimgFs(file);
                     // 创建文章
                     const d = await ArticleModel.create({
                         content: data.content,
@@ -106,12 +105,12 @@ class Api {
             } else {
                 ctx.body = {
                     code: 1,
-                    desc: '用户不存在',
+                    desc: '参数错误',
                     data: []
                 }
             }
-        } catch (e) {
-            ctx.throw(e);
+        } catch (err) {
+            ctx.throw(err);
         }
     }
 
@@ -174,14 +173,17 @@ class Api {
      * 检查创建文章参数
      * @param {*} ctx 
      */
-    async checkArtparam(ctx) {
-        const data = ctx.request.body.fields;
+    async checkArtparam(body) {
+        if(!body.fields && !body.files) return false;
+        const data = body && body.fields;
+        const file = body && body.files;
         const d = data
-        if (d && d.userId &&
+        if (body && d.userId &&
             d.title &&
             d.imgUrl &&
             d.desc &&
-            d.tag.length > 0) {
+            d.tag.length > 0 && 
+            file) {
             return true
         } else {
             return false

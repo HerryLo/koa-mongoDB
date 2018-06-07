@@ -76,12 +76,9 @@ async function errorHandler(ctx, next) {
     try {
         await next()
     } catch (err) {
-        console.log('Server Error', err);
-        ctx.response.status = err.statusCode || err.status || 500
-        ctx.response.body = {
-            message: err.message,
-            status: ctx.response.status
-        }
+        ctx.status = err.status || 500;
+        ctx.body = err.message;
+        ctx.app.emit('error', err, ctx);
     }
 }
 
