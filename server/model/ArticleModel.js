@@ -13,17 +13,17 @@ const ArticleSchema = mongoose.Schema({
 
 ArticleSchema.statics = {
     /* 查找 */
-    async find(data = {}) {
+    async findArt(data = {}) {
         const result = await this.find(data);
         return result
     },
     /* 创建 */
-    async create(data = {}){
+    async createArt(data = {}){
         const result = await this.create(data);
         return result;
     },
     /* update */
-    async update(data = {}){
+    async updateArt(data = {}){
         const result = await this.update(data);
         return result;
     }

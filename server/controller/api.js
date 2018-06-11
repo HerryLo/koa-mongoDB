@@ -38,7 +38,7 @@ class Api {
                 ctx.body = {
                     code: 0,
                     desc: '成功',
-                    data: result
+                    data: data
                 }
             } else {
                 ctx.body = {
@@ -149,19 +149,19 @@ class Api {
      * @param {*} next 
      */
     async createTag(ctx, next){
-        const tags = ctx.request.body.tag
+        const tags = ctx.request.body.fields.tag
         const {
             id,user
         } = ctx.state
         try{
-            tags.map(async (item)=> {
-                const result = await TagModel.create({
+            const tagList = JSON.parse(tags)
+            tagList.map(async (item)=> {
+                const result = await TagModel.createTag({
                     content: item,
                     createUserId: id,
                     useNumber: 0,
                 })
             })
-            return true;
         }catch(e){
             console.log(e);
             await next();
@@ -176,7 +176,7 @@ class Api {
         if(!body.fields && !body.files.file) return false;
         const data = body && body.fields;
         const d = data
-        if (d.content && d.title && d.desc && d.tag.length > 0) {
+        if (d.content && d.title && d.desc && d.tag) {
             return true
         } else {
             return false
