@@ -9,7 +9,7 @@ const verifyPath = [
 
 export default {
     db: {
-        url: 'mongodb://localhost/test'
+        url: 'mongodb://root:12345678@localhost/test'
     },
     secret: 'LiuHeng9227fe78182er',
     port: process.env.port || '12345',
