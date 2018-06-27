@@ -4,6 +4,6 @@ const Api = new Router();
 
 Api.get('/userlist', ApiController.userlist);
 Api.post('/createarticle', ApiController.createarticle);
-Api.get('/articlelist', ApiController.articlelist);
+Api.post('/articlelist', ApiController.articlelist);
 
 export default Api

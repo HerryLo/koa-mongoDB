@@ -123,14 +123,23 @@ class Api {
             id,
             user
         } = ctx.state
-        const query = ctx.request.query
+        const body = ctx.request.body
         try {
+            if(!body.skip || !body.limit){
+                ctx.body = {
+                    code: 0,
+                    data: {},
+                    desc: '参数错误'
+                }
+                return false
+            }
             const result = await UserModel.findUser({
                 _id: id,
                 user: user
             })
             if (result[0]._id == id) {
-                let data = await ArticleModel.find({});
+                let option = { skip: body.skip, limit: body.limit };
+                let data = await ArticleModel.findArt({} ,option);
                 ctx.body = {
                     code: 0,
                     data: data,
