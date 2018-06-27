@@ -33,7 +33,7 @@ class Api {
                 _id: id,
                 user: user
             })
-            if (result[0].isadmin) {
+            if (result[0] && result[0].isadmin) {
                 let data = await UserModel.findUser({});
                 ctx.body = {
                     code: 0,
