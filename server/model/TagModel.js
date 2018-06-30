@@ -1,10 +1,13 @@
 import mongoose from 'mongoose'
 
 const TagSchema = mongoose.Schema({
-    content: String,
-    createUserId: String,
-    useNumber: Number,
-    createTime: { type: Date, default: Date.now }
+    content: String,                //文本
+    createUserId: String,           //创建用户ID
+    useNumber: Number,              //使用次数
+    createTime: {                   //创建时间
+        type: Date,
+        default: Date.now
+    }
 })
 
 TagSchema.statics = {
@@ -14,7 +17,7 @@ TagSchema.statics = {
         return result
     },
     /* 创建 */
-    async createTag(data = {}){
+    async createTag(data = {}) {
         const result = await this.create(data);
         return result;
     }

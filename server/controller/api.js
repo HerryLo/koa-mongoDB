@@ -54,7 +54,7 @@ class Api {
     }
 
     /**
-     * 创建 文章
+     * 创建文章
      * @param {*} ctx 
      * @param {*} next 
      */
@@ -125,25 +125,30 @@ class Api {
         } = ctx.state
         const body = ctx.request.body
         try {
-            if(!body.skip || !body.limit){
+            if (body.skip != undefined && body.limit) {
+                const result = await UserModel.findUser({
+                    _id: id,
+                    user: user
+                })
+                if (result[0]) {
+                    let option = {
+                        skip: body.skip,
+                        limit: body.limit
+                    };
+                    let totalPage = await ArticleModel.countNum({});
+                    let data = await ArticleModel.findArt({}, option);
+                    ctx.body = {
+                        code: 0,
+                        totalPage: totalPage,
+                        data: data,
+                        desc: '成功'
+                    }
+                }
+            } else {
                 ctx.body = {
                     code: 0,
                     data: {},
                     desc: '参数错误'
-                }
-                return false
-            }
-            const result = await UserModel.findUser({
-                _id: id,
-                user: user
-            })
-            if (result[0]._id == id) {
-                let option = { skip: body.skip, limit: body.limit };
-                let data = await ArticleModel.findArt({} ,option);
-                ctx.body = {
-                    code: 0,
-                    data: data,
-                    desc: '成功'
                 }
             }
         } catch (e) {
@@ -157,21 +162,22 @@ class Api {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async createTag(ctx, next){
+    async createTag(ctx, next) {
         const tags = ctx.request.body.fields.tag
         const {
-            id,user
+            id,
+            user
         } = ctx.state
-        try{
-            const tagList = JSON.parse(tags)
-            tagList.map(async (item)=> {
+        try {
+            const tagList = tags;
+            tagList.map(async (item) => {
                 const result = await TagModel.createTag({
                     content: item,
                     createUserId: id,
                     useNumber: 0,
                 })
             })
-        }catch(e){
+        } catch (e) {
             console.log(e);
             await next();
         }
@@ -182,7 +188,7 @@ class Api {
      * @param {*} ctx 
      */
     checkArtparam(body) {
-        if(!body.fields && !body.files.file) return false;
+        if (!body.fields && !body.files.file) return false;
         const data = body && body.fields;
         const d = data
         if (d.content && d.title && d.desc && d.tag) {

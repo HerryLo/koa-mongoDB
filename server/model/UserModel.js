@@ -1,11 +1,18 @@
 import mongoose from 'mongoose'
 
 const UserSchema = mongoose.Schema({
-    user: String,
-    password: String,
-    photo: { type: String, min: 10, max: 20 },
-    isadmin: Boolean,
-    regtime: { type: Date, default: Date.now }
+    user: String,                   //用户名
+    password: String,               //密码
+    photo: {                        //手机号
+        type: String,
+        min: 10,
+        max: 20
+    },
+    isadmin: Boolean,               //是否为管理员
+    regtime: {                      //创建时间
+        type: Date,
+        default: Date.now
+    }
 });
 
 UserSchema.statics = {
@@ -15,7 +22,7 @@ UserSchema.statics = {
         return result
     },
     /* 创建用户 */
-    async createUser(data = {}){
+    async createUser(data = {}) {
         const result = await this.create(data);
         return result;
     }
