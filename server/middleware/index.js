@@ -1,5 +1,8 @@
 import config from '../config/config'
 import jwt from 'jsonwebtoken'
+import {
+    UserModel
+} from '../monoose/dbConnect'
 
 /**
  * 中间件 检查token是否失效
@@ -27,7 +30,6 @@ async function verify(ctx, next) {
             // console.log(config.secret)         
             jwtVerify = await jwt.verify(settoken, config.secret);
         } catch (err) {
-            console.log(err);
             ctx.throw(401, 'JsonWebTokenError', {
                 name: 'JsonWebTokenError'
             });
@@ -36,13 +38,23 @@ async function verify(ctx, next) {
             id,
             user
         } = jwtVerify;
-        if (id) {
+        // 判断用户是否存在
+        const result = await UserModel.findUser({
+            _id: id,
+            user: user
+        })
+        if (result[0] && id) {
             ctx.state = {
                 id,
                 user
             }
+            await next();
+        } else {
+            ctx.throw(404, 'ERROR USER', {
+                code: -1,
+                desc: '用户不存在'
+            });
         }
-        await next();
     } else {
         await next();
     }

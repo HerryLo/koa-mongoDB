@@ -1,5 +1,3 @@
-import jwt from 'jsonwebtoken'
-import config from '../config/config'
 import {
     ArticleModel,
     UserModel,
@@ -29,84 +27,11 @@ class Api {
             user
         } = ctx.state;
         try {
-            const result = await UserModel.findUser({
-                _id: id,
-                user: user
-            })
-            if (result[0] && result[0].isadmin) {
-                let data = await UserModel.findUser({});
-                ctx.body = {
-                    code: 0,
-                    desc: '成功',
-                    data: data
-                }
-            } else {
-                ctx.body = {
-                    code: 1,
-                    desc: '用户不存在',
-                    data: []
-                }
-            }
-        } catch (e) {
-            console.log(e)
-            await next();
-        }
-    }
-
-    /**
-     * 创建文章
-     * @param {*} ctx 
-     * @param {*} next 
-     */
-    async createarticle(ctx, next) {
-        const {
-            id,
-            user
-        } = ctx.state;
-        const file = ctx.request.body.files && ctx.request.body.files.file;
-        const data = ctx.request.body.fields;
-        try {
-            // 检查参数是否正确
-            const checkBool = await this.checkArtparam(ctx.request.body);
-            if (checkBool) {
-                const result = await UserModel.findUser({
-                    _id: id
-                });
-                if (result[0]) {
-                    // 创建标签
-                    await this.createTag(ctx, next)
-                    // 将图片保存到public
-                    const imgName = await CreateArtimgFs(ctx.request.body.files.file);
-                    // 创建文章
-                    const d = await ArticleModel.create({
-                        content: data.content,
-                        userId: id,
-                        title: data.title,
-                        oneNumber: 0,
-                        imgUrl: imgName,
-                        desc: data.desc,
-                        tag: data.tag
-                    });
-                    if (d) {
-                        ctx.body = {
-                            code: 1,
-                            desc: '添加成功',
-                            data: d
-                        }
-                    }
-                } else {
-                    ctx.body = {
-                        code: 1,
-                        desc: '请求参数不正确',
-                        data: []
-                    }
-                }
-            } else {
-                ctx.body = {
-                    code: 1,
-                    desc: '参数错误',
-                    data: []
-                }
+            let data = await UserModel.findUser({});
+            ctx.body = {
+                code: 0,
+                desc: '成功',
+                data: data
             }
         } catch (err) {
             ctx.throw(err);
@@ -126,23 +51,17 @@ class Api {
         const body = ctx.request.body
         try {
             if (body.skip != undefined && body.limit) {
-                const result = await UserModel.findUser({
-                    _id: id,
-                    user: user
-                })
-                if (result[0]) {
-                    let option = {
-                        skip: body.skip,
-                        limit: body.limit
-                    };
-                    let totalPage = await ArticleModel.countNum({});
-                    let data = await ArticleModel.findArt({}, option);
-                    ctx.body = {
-                        code: 0,
-                        totalPage: totalPage,
-                        data: data,
-                        desc: '成功'
-                    }
+                let option = {
+                    skip: Number(body.skip),
+                    limit: Number(body.limit)
+                };
+                let totalPage = await ArticleModel.countNum({});
+                let data = await ArticleModel.findArt({}, option);
+                ctx.body = {
+                    code: 0,
+                    totalPage: totalPage,
+                    data: data,
+                    desc: '成功'
                 }
             } else {
                 ctx.body = {
@@ -151,9 +70,8 @@ class Api {
                     desc: '参数错误'
                 }
             }
-        } catch (e) {
-            console.log(e);
-            await next();
+        } catch (err) {
+            ctx.throw(err);
         }
     }
 
@@ -177,9 +95,78 @@ class Api {
                     useNumber: 0,
                 })
             })
-        } catch (e) {
-            console.log(e);
-            await next();
+        } catch (err) {
+            ctx.throw(err);
+        }
+    }
+
+    /**
+     * 创建文章
+     * @param {*} ctx 
+     * @param {*} next 
+     */
+    async createarticle(ctx, next) {
+        const {
+            id,
+            user
+        } = ctx.state;
+        const file = ctx.request.body.files && ctx.request.body.files.file;
+        const data = ctx.request.body.fields;
+        try {
+            // 检查参数是否正确
+            const checkBool = await this.checkArtparam(ctx.request.body);
+            if (checkBool) {
+                // 创建标签
+                await this.createTag(ctx, next)
+                // 将图片保存到public
+                const imgName = await CreateArtimgFs(ctx.request.body.files.file);
+                // 创建文章
+                const d = await ArticleModel.create({
+                    content: data.content,
+                    userId: id,
+                    title: data.title,
+                    oneNumber: 0,
+                    imgUrl: imgName,
+                    desc: data.desc,
+                    tag: data.tag
+                });
+                if (d) {
+                    ctx.body = {
+                        code: 1,
+                        desc: '添加成功',
+                        data: d
+                    }
+                }
+            } else {
+                ctx.body = {
+                    code: 1,
+                    desc: '参数错误',
+                    data: []
+                }
+            }
+        } catch (err) {
+            ctx.throw(err);
+        }
+    }
+
+    /**
+     * 修改文章 
+     */
+    async setarticle(ctx, next) {
+        const {
+            id,
+            user
+        } = ctx.state;
+        const body = ctx.request.body;
+        try{
+            // 是否存在文章ID
+            if(body.id){
+                const result = await TagModel.update();
+            }else{
+
+            }
+        }catch(err){
+            ctx.throw(err);
         }
     }
 

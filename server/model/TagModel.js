@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 
 const TagSchema = mongoose.Schema({
-    content: String,                //文本
-    createUserId: String,           //创建用户ID
-    useNumber: Number,              //使用次数
-    createTime: {                   //创建时间
+    content: String, //文本
+    createUserId: String, //创建用户ID
+    useNumber: Number, //使用次数
+    createTime: { //创建时间
         type: Date,
         default: Date.now
     }

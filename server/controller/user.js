@@ -25,7 +25,7 @@ class User {
                 user: user,
                 password: password
             });
-            if (result[0]) {
+            if (result[0] && result[0].isadmin) {
                 const token = jwt.sign({
                     id: result[0]._id,
                     user: user
@@ -98,8 +98,7 @@ class User {
                 }
             }
         } catch (err) {
-            console.log(err);
-            await next();
+            ctx.throw(err);
         }
 
     }
@@ -116,7 +115,7 @@ class User {
                     _id: id,
                     user: user
                 });
-                if (result[0]) {
+                if (result[0] && result[0].isadmin) {
                     ctx.body = {
                         code: 0,
                         desc: "成功",
@@ -129,8 +128,7 @@ class User {
                     }
                 }
         } catch (err) {
-            console.log(err);
-            await next();
+            ctx.throw(err);
         }
     }
 
