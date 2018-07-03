@@ -151,6 +151,22 @@ class Api {
     }
 
     /**
+     * 创建评论
+     */
+    async createcomment(ctx, next) {
+        const {
+            id,
+            user
+        } = ctx.state;
+        const body = ctx.request.body;
+        ctx.body = {
+            code: 0,
+            data: [],
+            desc: '成功'
+        }
+    }
+
+    /**
      * 修改文章 
      */
     async setarticle(ctx, next) {
@@ -163,8 +179,17 @@ class Api {
             // 是否存在文章ID
             if(body.id){
                 const result = await TagModel.update();
+                ctx.body = {
+                    code: 0,
+                    data: [],
+                    desc: '成功'
+                }
             }else{
-
+                ctx.body = {
+                    code: -1,
+                    data: [],
+                    desc: '文章id不存在'
+                }
             }
         }catch(err){
             ctx.throw(err);
