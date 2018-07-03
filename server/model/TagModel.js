@@ -1,3 +1,7 @@
+/**
+ * 标签模型
+ */
+
 import mongoose from 'mongoose'
 
 const TagSchema = mongoose.Schema({

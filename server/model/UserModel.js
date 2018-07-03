@@ -1,7 +1,12 @@
+/**
+ * 用户模型
+ */
+
 import mongoose from 'mongoose'
 
 const UserSchema = mongoose.Schema({
     user: String, //用户名
+    avatarURL: String, //用户头像
     password: String, //密码
     photo: { //手机号
         type: String,

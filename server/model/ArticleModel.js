@@ -1,3 +1,7 @@
+/**
+ * 文章模型
+ */
+
 import mongoose from 'mongoose'
 
 const ArticleSchema = mongoose.Schema({

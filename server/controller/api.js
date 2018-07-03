@@ -124,6 +124,7 @@ class Api {
                 const d = await ArticleModel.create({
                     content: data.content,
                     userId: id,
+                    userName: user,
                     title: data.title,
                     oneNumber: 0,
                     imgUrl: imgName,
