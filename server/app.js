@@ -5,25 +5,35 @@ import path from 'path'
 import routers from './router/index'
 import config from './config/config'
 import { verify, tokenError, errorHandler} from './middleware'
-import cors from 'kcors'
 import json from 'koa-json'
 import logger from 'koa-logger'
-import jwt from 'jsonwebtoken'
+import helmet from 'koa-helmet'
+import limit from 'koa-limit'
+const cors = require('kcors')
 
 const app = new Koa();
+// If you are using reverse proxy on the front of node, like 'nginx', please set this 
+app.proxy = true;
 
-app.use(cors())
+app.use(cors({
+    'origin':()=>{
+        // if (ctx.url === '/test') {
+        //     return "*"; // 允许来自所有域名请求
+        // }
+        // 允许请求
+        return 'http://localhost:12346' || 'http://boss.didiheng.com'; 
+    }
+}))
 app.use(json())
 app.use(logger())
+app.use(helmet())
 app.use(koaBody({
     multipart: true
 }));
-// app.use(session({
-//     store: redisStore({
-//         host: config.redis.host,
-//         port: config.redis.port
-//     })
-// }));
+app.use(limit({
+    limit: 1000,
+    interval: 1000 * 60 * 60
+}));
 
 app.use(staticFiles(path.resolve(__dirname, "./public")))
 

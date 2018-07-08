@@ -5,13 +5,13 @@ const Api = new Router();
 // 用户列表
 Api.get('/userlist', ApiController.userlist);
 // 创建文章
-Api.post('/createarticle', ApiController.createarticle);
+Api.post('/createarticle',  ApiController.createarticle);
 // 文章列表
-Api.post('/articlelist', ApiController.articlelist);
+Api.post('/articlelist',  ApiController.articlelist);
 // 更新文章
-Api.put('/setarticle', ApiController.setarticle);
+Api.put('/setarticle',  ApiController.setarticle);
 // 创建评论
-Api.put('/createcomment', ApiController.createcomment);
+Api.put('/createcomment',  ApiController.createcomment);
 
 
 export default Api
