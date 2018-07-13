@@ -161,18 +161,29 @@ class Api {
         } = ctx.state;
         const body = ctx.request.body;
         try{
-            if(body.content){
-                const result = await CommentModel.create({
-                    articleId: String, //文章ID
-                    userId: id, //用户ID
-                    username: user, //
-                    avatarURL: '', //用户头像
-                    content: '', //内容
+            if(body.content && body.articleId){
+                const article = await ArticleModel.findArt({
+                    _id: body.articleId
                 })
-                ctx.body = {
-                    code: 0,
-                    data: result,
-                    desc: '成功'
+                if(article[0]){
+                    const result = await CommentModel.create({
+                        articleId: body.articleId, //文章ID
+                        userId: id, //用户ID
+                        username: user, //
+                        avatarURL: '', //用户头像
+                        content: body.content, //内容
+                    })
+                    ctx.body = {
+                        code: 0,
+                        data: result,
+                        desc: '成功'
+                    }
+                }else{
+                    ctx.body = {
+                        code: -1,
+                        data: [],
+                        desc: '不存在的文章ID'
+                    }
                 }
             }else{
                 ctx.body = {
