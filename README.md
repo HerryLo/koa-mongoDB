@@ -1,5 +1,7 @@
 # koa
 
+[![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
+  
   个人项目，采用koa2路由框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
 
 ## 技术栈
