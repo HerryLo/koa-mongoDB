@@ -12,6 +12,7 @@ import limit from 'koa-limit'
 const cors = require('kcors')
 
 const app = new Koa();
+const staticFile = path.resolve(__dirname, "./public")
 // If you are using reverse proxy on the front of node, like 'nginx', please set this 
 app.proxy = true;
 
@@ -35,7 +36,7 @@ app.use(limit({
     interval: 1000 * 60 * 60
 }));
 
-app.use(staticFiles(path.resolve(__dirname, "./public")))
+app.use(staticFiles(staticFile))
 
 app.use(async (ctx, next) => {
     await tokenError(ctx, next);

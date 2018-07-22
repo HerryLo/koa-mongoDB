@@ -88,14 +88,16 @@ class Api {
             user
         } = ctx.state
         try {
-            const tagList = tags;
-            tagList.map(async (item) => {
-                const result = await TagModel.createTag({
-                    content: item,
-                    createUserId: id,
-                    useNumber: 0,
+            if(tags){
+                const tagList = tags.split(',');
+                tagList.map(async (item) => {
+                    const result = await TagModel.createTag({
+                        content: item,
+                        createUserId: id,
+                        useNumber: 0,
+                    })
                 })
-            })
+            }
         } catch (err) {
             ctx.throw(err);
         }
