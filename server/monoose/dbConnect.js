@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import UserModel from '../model/UserModel'
 import ArticleModel from '../model/ArticleModel'
 import TagModel from '../model/TagModel'
+import CommentModel from '../model/CommentModel'
 import config from '../config/config'
 
 mongoose.connect(config.db.url);
@@ -14,5 +15,6 @@ db.once('open', function () {
 module.exports = {
     UserModel,
     ArticleModel,
-    TagModel
+    TagModel,
+    CommentModel
 }
