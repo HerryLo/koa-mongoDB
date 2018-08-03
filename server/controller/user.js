@@ -57,7 +57,7 @@ class User {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async register(ctx, next) {
+    async register(ctx) {
         try {
             const {
                 user,
@@ -110,25 +110,25 @@ class User {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async getUserInfo(ctx, next) {
+    async getUserInfo(ctx) {
         try {
             const {id, user} = ctx.state;
             const result = await UserModel.findUser({
-                    _id: id,
-                    user: user
-                });
-                if (result[0] && result[0].isadmin) {
-                    ctx.body = {
-                        code: 0,
-                        desc: "成功",
-                        data: result[0]
-                    }
-                } else {
-                    ctx.body = {
-                        code: 1,
-                        desc: "用户请登录"
-                    }
+                _id: id,
+                user: user
+            });
+            if (result[0] && result[0].isadmin) {
+                ctx.body = {
+                    code: 0,
+                    desc: "成功",
+                    data: result[0]
                 }
+            } else {
+                ctx.body = {
+                    code: 1,
+                    desc: "用户请登录"
+                }
+            }
         } catch (err) {
             ctx.throw(err);
         }

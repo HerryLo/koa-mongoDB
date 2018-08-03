@@ -13,9 +13,13 @@ import {
 class Api {
     constructor() {
         this.userlist = this.userlist.bind(this);
+        // 文章 
         this.createarticle = this.createarticle.bind(this);
         this.articlelist = this.articlelist.bind(this);
-        this.createTag = this.createTag.bind(this);
+        // 标签
+        this.createtag = this.createtag.bind(this);
+        this.settag = this.settag.bind(this);
+        // 文章参数判断
         this.checkArtparam = this.checkArtparam.bind(this);
     }
 
@@ -75,20 +79,25 @@ class Api {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async createTag(ctx) {
+    async createtag(ctx) {
         const tags = ctx.request.body.fields.tag
         const {
             id
         } = ctx.state
         try {
-            const tagList = tags;
-            tagList.map(async (item) => {
-                await TagModel.createTag({
-                    content: item,
-                    createUserId: id,
-                    useNumber: 0,
-                })
+            const result = TagModel.findTag({
+                createUserId: id 
             })
+            if(result.length == 0){
+                const tagList = tags;
+                tagList.map(async (item) => {
+                    await TagModel.createtag({
+                        content: item,
+                        createUserId: id,
+                        useNumber: 0,
+                    })
+                })
+            }
         } catch (err) {
             ctx.throw(err);
         }
@@ -110,7 +119,7 @@ class Api {
             const checkBool = await this.checkArtparam(ctx.request.body);
             if (checkBool) {
                 // 创建标签
-                await this.createTag(ctx, next)
+                await this.createtag(ctx, next)
                 // 将图片保存到public
                 const imgName = await CreateArtimgFs(ctx.request.body.files.file);
                 // 创建文章
@@ -201,7 +210,7 @@ class Api {
             // 是否存在文章ID
             if (article.length > 0) {
                 // 创建标签
-                await this.createTag(ctx)
+                await this.settag(ctx)
                 // 检查参数是否正确
                 const checkBool = await this.checkArtparam(body);
                 if(checkBool){
@@ -236,6 +245,17 @@ class Api {
     /**
      * 修改标签
      */
+    async settag(ctx) {
+        const {
+            id
+        } = ctx.state
+        const result = TagModel.findTag({
+            createUserId: id 
+        })
+        if(result.length > 0){
+            console.log(12);
+        }
+    }
 
     /**
      * 检查创建文章参数
