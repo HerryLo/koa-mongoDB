@@ -1,3 +1,5 @@
+"use strict"
+
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import staticFiles from 'koa-static'
