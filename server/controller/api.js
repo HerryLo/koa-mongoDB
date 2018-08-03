@@ -24,11 +24,7 @@ class Api {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async userlist(ctx, next) {
-        const {
-            id,
-            user
-        } = ctx.state;
+    async userlist(ctx) {
         try {
             let data = await UserModel.findUser({});
             ctx.body = {
@@ -46,11 +42,7 @@ class Api {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async articlelist(ctx, next) {
-        const {
-            id,
-            user
-        } = ctx.state
+    async articlelist(ctx) {
         const body = ctx.request.body
         try {
             if (body.skip != undefined && body.limit) {
@@ -83,16 +75,15 @@ class Api {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async createTag(ctx, next) {
+    async createTag(ctx) {
         const tags = ctx.request.body.fields.tag
         const {
-            id,
-            user
+            id
         } = ctx.state
         try {
             const tagList = tags;
             tagList.map(async (item) => {
-                const result = await TagModel.createTag({
+                await TagModel.createTag({
                     content: item,
                     createUserId: id,
                     useNumber: 0,
@@ -113,7 +104,6 @@ class Api {
             id,
             user
         } = ctx.state;
-        const file = ctx.request.body.files && ctx.request.body.files.file;
         const data = ctx.request.body.fields;
         try {
             // 检查参数是否正确
@@ -156,18 +146,18 @@ class Api {
     /**
      * 创建评论
      */
-    async createcomment(ctx, next) {
+    async createcomment(ctx) {
         const {
             id,
             user
         } = ctx.state;
         const body = ctx.request.body;
-        try{
-            if(body.content && body.articleId){
+        try {
+            if (body.content && body.articleId) {
                 const article = await ArticleModel.findArt({
                     _id: body.articleId
                 })
-                if(article[0]){
+                if (article[0]) {
                     const result = await CommentModel.create({
                         articleId: body.articleId, //文章ID
                         userId: id, //用户ID
@@ -180,21 +170,21 @@ class Api {
                         data: result,
                         desc: '成功'
                     }
-                }else{
+                } else {
                     ctx.body = {
                         code: -1,
                         data: [],
                         desc: '不存在的文章ID'
                     }
                 }
-            }else{
+            } else {
                 ctx.body = {
                     code: -1,
                     data: [],
                     desc: '请输入评论内容'
                 }
             }
-        }catch(e){
+        } catch (e) {
             ctx.throw(e);
         }
     }
@@ -208,23 +198,23 @@ class Api {
             user
         } = ctx.state;
         const body = ctx.request.body;
-        try{
+        try {
             // 是否存在文章ID
-            if(body.id){
+            if (body.id) {
                 const result = await ArticleModel.update();
                 ctx.body = {
                     code: 0,
                     data: [],
                     desc: '成功'
                 }
-            }else{
+            } else {
                 ctx.body = {
                     code: -1,
                     data: [],
                     desc: '文章id不存在'
                 }
             }
-        }catch(err){
+        } catch (err) {
             ctx.throw(err);
         }
     }
