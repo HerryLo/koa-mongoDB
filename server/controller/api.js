@@ -211,7 +211,7 @@ class Api {
         try{
             // 是否存在文章ID
             if(body.id){
-                const result = await TagModel.update();
+                const result = await ArticleModel.update();
                 ctx.body = {
                     code: 0,
                     data: [],
