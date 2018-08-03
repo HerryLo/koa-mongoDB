@@ -192,20 +192,34 @@ class Api {
     /**
      * 修改文章 
      */
-    async setarticle(ctx, next) {
-        const {
-            id,
-            user
-        } = ctx.state;
+    async setarticle(ctx) {
         const body = ctx.request.body;
         try {
+            const article = await ArticleModel.findArt({
+                _id: body.id
+            });
             // 是否存在文章ID
-            if (body.id) {
-                const result = await ArticleModel.update();
-                ctx.body = {
-                    code: 0,
-                    data: [],
-                    desc: '成功'
+            if (article.length > 0) {
+                // 创建标签
+                await this.createTag(ctx)
+                // 检查参数是否正确
+                const checkBool = await this.checkArtparam(body);
+                if(checkBool){
+                    // 将图片保存到public
+                    const imgName = await CreateArtimgFs(body.files.file);
+                    // 更新文章数据
+                    await ArticleModel.update({_id: body.id} ,{
+                        content: body.content,
+                        title: body.title,
+                        imgUrl: imgName,
+                        desc: body.desc,
+                        tag: body.tag
+                    });
+                    ctx.body = {
+                        code: 0,
+                        data: [],
+                        desc: '成功'
+                    }
                 }
             } else {
                 ctx.body = {
@@ -218,6 +232,10 @@ class Api {
             ctx.throw(err);
         }
     }
+
+    /**
+     * 修改标签
+     */
 
     /**
      * 检查创建文章参数
