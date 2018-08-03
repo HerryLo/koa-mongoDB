@@ -13,6 +13,7 @@
 * 通过Es6语法进行项目编写
 * 文件结构采用MC拆分
 * babel-register编译Es6/7
+* Eslint语法规则
 
 ## server下为目录结构:
 ```
