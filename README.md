@@ -9,13 +9,13 @@
 ## 技术栈
 使用koa+mongoose 开发;
 
-* 使用koa作为开发框架
-* mongoose作为数据库操作
-* 使用jwt进行token的生成
+* 使用koa2.0作为开发框架
+* mongoose作为数据库，保存数据
+* 使用jwt进行token的生成和校验
 * 通过Es6语法进行项目编写
 * 文件结构采用MC拆分
-* babel-register编译Es6/7
-* Eslint语法规则
+* babel-register编译Es6/7/8
+* esLint语法规则
 
 ## server下为目录结构:
 ```
@@ -45,6 +45,7 @@
 ```
 $ npm install 
 
+<!-- 需要开启管理权限设置 -->
 $ mongod  //开启mongoDB
 
 $ npm run dev //本地测试服务
