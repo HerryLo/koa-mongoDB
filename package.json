@@ -28,6 +28,10 @@
     "start": "cross-env NODE_ENV=production pm2 start index.js --node-args='--harmony' --name 'koa-mongoDB --port 12345'",
     "stop": "cross-env NODE_ENV=production pm2 stop index.js --name 'koa-mongoDB --port 12345'"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HerryLo/koa-mongoDB.git"
+  },
   "author": "",
   "license": "ISC"
 }
