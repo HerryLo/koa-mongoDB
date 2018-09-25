@@ -86,7 +86,7 @@ class Api {
         } = ctx.state
         try {
             const result = TagModel.findTag({
-                createUserId: id 
+                createUserId: id
             })
             if(result.length == 0){
                 const tagList = tags;
