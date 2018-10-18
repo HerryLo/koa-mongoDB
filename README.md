@@ -1,4 +1,4 @@
-# koa
+# koa2
 
 [![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
   
