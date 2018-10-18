@@ -45,6 +45,7 @@
 ```
 $ npm install 
 
+<!-- 需要开启mongoDB数据库，不然直接报错 -->
 $ mongod  //开启mongoDB
 
 $ npm run dev //本地测试服务
