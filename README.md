@@ -17,6 +17,16 @@
 * babel-register编译Es6/7
 * Eslint语法规则
 
+## 调试运行
+```
+$ npm install 
+
+<!-- 需要开启mongoDB数据库，不然直接报错 -->
+$ mongod  //开启mongoDB
+
+$ npm run dev //本地测试服务
+```
+
 ## server下为目录结构:
 ```
 .
@@ -39,16 +49,6 @@
 |  |   └── user.js                user路由
 |  |—— utils                      公共方法
 |  |—— app.js                     app入口文件
-```
-
-## 调试运行
-```
-$ npm install 
-
-<!-- 需要开启mongoDB数据库，不然直接报错 -->
-$ mongod  //开启mongoDB
-
-$ npm run dev //本地测试服务
 ```
 
 ## API接口
