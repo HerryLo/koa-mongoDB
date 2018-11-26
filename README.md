@@ -51,7 +51,6 @@ $ npm run dev //本地测试服务
 |  |—— app.js                     app入口文件
 ```
 
-<<<<<<< HEAD
 ## 调试运行
 ```
 $ npm install 
@@ -62,7 +61,5 @@ $ mongod  //开启mongoDB
 $ npm run dev //本地测试服务
 ```
 
-=======
->>>>>>> 12857cb99b1e2c23b66df7efcaa2b79fb5951f4d
 ## API接口
   [后端 接口文档](https://github.com/HerryLo/koa-mongoDB/wiki/API-%E6%8E%A5%E5%8F%A3)
