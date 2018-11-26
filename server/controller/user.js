@@ -5,11 +5,18 @@ import {
 } from '../monoose/dbConnect'
 import jwt from 'jsonwebtoken'
 import config from '../config/config'
-
-class User {
+/**
+ * user Controller
+ * Post login
+ * Post register
+ * Get getUserInfo
+ * Get userlist
+ */
+class UserController {
     constructor() {
         this.login = this.login.bind(this);
         this.register = this.register.bind(this);
+        this.userlist = this.userlist.bind(this);
     }
 
     /**
@@ -134,6 +141,23 @@ class User {
         }
     }
 
+    /**
+     * 获取用户列表
+     * @param {*} ctx 
+     * @param {*} next 
+     */
+    async userlist(ctx) {
+        try {
+            let data = await UserModel.findUser({});
+            ctx.body = {
+                code: 0,
+                desc: '成功',
+                data: data
+            }
+        } catch (err) {
+            ctx.throw(err);
+        }
+    }
 }
 
-export default new User()
+export default new UserController()

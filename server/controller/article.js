@@ -1,44 +1,25 @@
 "use strict"
 
 import {
-    ArticleModel,
-    UserModel,
-    TagModel,
-    CommentModel
+    ArticleModel
 } from '../monoose/dbConnect'
 import {
     CreateArtimgFs
 } from '../utils/util'
 
-class Api {
+/**
+ * article Controller
+ * Get List 
+ * Create Article
+ * Set Article
+ */
+class ArticleController {
     constructor() {
-        this.userlist = this.userlist.bind(this);
         // 文章 
         this.createarticle = this.createarticle.bind(this);
         this.articlelist = this.articlelist.bind(this);
-        // 标签
-        this.createtag = this.createtag.bind(this);
-        this.settag = this.settag.bind(this);
         // 文章参数判断
         this.checkArtparam = this.checkArtparam.bind(this);
-    }
-
-    /**
-     * 获取用户列表
-     * @param {*} ctx 
-     * @param {*} next 
-     */
-    async userlist(ctx) {
-        try {
-            let data = await UserModel.findUser({});
-            ctx.body = {
-                code: 0,
-                desc: '成功',
-                data: data
-            }
-        } catch (err) {
-            ctx.throw(err);
-        }
     }
 
     /**
@@ -68,35 +49,6 @@ class Api {
                     data: {},
                     desc: '参数错误'
                 }
-            }
-        } catch (err) {
-            ctx.throw(err);
-        }
-    }
-
-    /**
-     * 创建标签
-     * @param {*} ctx 
-     * @param {*} next 
-     */
-    async createtag(ctx) {
-        const tags = ctx.request.body.fields.tag
-        const {
-            id
-        } = ctx.state
-        try {
-            const result = TagModel.findTag({
-                createUserId: id
-            })
-            if(result.length == 0){
-                const tagList = tags;
-                tagList.map(async (item) => {
-                    await TagModel.createtag({
-                        content: item,
-                        createUserId: id,
-                        useNumber: 0,
-                    })
-                })
             }
         } catch (err) {
             ctx.throw(err);
@@ -153,52 +105,6 @@ class Api {
     }
 
     /**
-     * 创建评论
-     */
-    async createcomment(ctx) {
-        const {
-            id,
-            user
-        } = ctx.state;
-        const body = ctx.request.body;
-        try {
-            if (body.content && body.articleId) {
-                const article = await ArticleModel.findArt({
-                    _id: body.articleId
-                })
-                if (article[0]) {
-                    const result = await CommentModel.create({
-                        articleId: body.articleId, //文章ID
-                        userId: id, //用户ID
-                        username: user, //
-                        avatarURL: '', //用户头像
-                        content: body.content, //内容
-                    })
-                    ctx.body = {
-                        code: 0,
-                        data: result,
-                        desc: '成功'
-                    }
-                } else {
-                    ctx.body = {
-                        code: -1,
-                        data: [],
-                        desc: '不存在的文章ID'
-                    }
-                }
-            } else {
-                ctx.body = {
-                    code: -1,
-                    data: [],
-                    desc: '请输入评论内容'
-                }
-            }
-        } catch (e) {
-            ctx.throw(e);
-        }
-    }
-
-    /**
      * 修改文章 
      */
     async setarticle(ctx) {
@@ -243,21 +149,6 @@ class Api {
     }
 
     /**
-     * 修改标签
-     */
-    async settag(ctx) {
-        const {
-            id
-        } = ctx.state
-        const result = TagModel.findTag({
-            createUserId: id 
-        })
-        if(result.length > 0){
-            console.log(12);
-        }
-    }
-
-    /**
      * 检查创建文章参数
      * @param {*} ctx 
      */
@@ -274,4 +165,4 @@ class Api {
 
 }
 
-export default new Api()
+export default new ArticleController()
