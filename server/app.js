@@ -1,17 +1,18 @@
 "use strict"
 
 import Koa from 'koa'
+import path from 'path'
 import koaBody from 'koa-body'
 import staticFiles from 'koa-static'
-import path from 'path'
-import routers from './router/index'
-import config from './config/config'
-import { verify, tokenError, errorHandler} from './middleware'
 import json from 'koa-json'
 import logger from 'koa-logger'
 import helmet from 'koa-helmet'
 import limit from 'koa-limit'
-const cors = require('kcors')
+import cors from 'kcors'
+
+import routers from './router/index'
+import config from './config/config'
+import { verify, tokenError, errorHandler} from './middleware'
 
 const app = new Koa();
 const staticFile = path.resolve(__dirname, "./public")
@@ -43,7 +44,6 @@ app.use(staticFiles(staticFile))
 app.use(async (ctx, next) => {
     await tokenError(ctx, next);
 });
-
 app.use(async (ctx, next) => {
     await verify(ctx, next);
 });
@@ -53,10 +53,10 @@ routers(app)
 
 /** 异常 */
 app.use(errorHandler)
-app.on('error', (err) => {
+app.on('error', async (err) => {
     console.error('Server Error', err)
 });
 
-app.listen(config.port, () => {
+app.listen(config.port, async () => {
     console.log(`Node Server open: localhost:${config.port}`)
-});
+})
