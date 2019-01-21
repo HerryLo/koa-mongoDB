@@ -28,7 +28,7 @@
     "dev": "cross-env NODE_ENV=development supervisor --harmony ./server/index.js",
     "start": "cross-env NODE_ENV=production pm2 start ./server/index.js --node-args='--harmony' --name 'koa-mongoDB --port 12345'",
     "stop": "cross-env NODE_ENV=production pm2 stop ./server/index.js --name 'koa-mongoDB --port 12345'",
-    "test": "mocha test/**/*.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
