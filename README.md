@@ -9,6 +9,7 @@
 ## 技术栈
 使用koa+mongoose 开发;
 
+* yarn 依赖版本控制
 * 使用koa2.0作为开发框架
 * mongoose作为数据库，保存数据
 * 使用jwt进行token的生成和校验

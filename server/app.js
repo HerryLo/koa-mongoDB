@@ -42,10 +42,18 @@ app.use(limit({
 app.use(staticFiles(staticFile))
 
 app.use(async (ctx, next) => {
-    await tokenError(ctx, next);
+    try{
+        await tokenError(ctx, next);
+    }catch(e){
+        ctx.throw(e);
+    }
 });
 app.use(async (ctx, next) => {
-    await verify(ctx, next);
+    try{
+        await verify(ctx, next);
+    }catch(e){
+        ctx.throw(e);
+    }
 });
 
 /** 路由配置 */
