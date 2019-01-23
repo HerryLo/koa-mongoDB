@@ -8,13 +8,13 @@ services:
       - 27017:27017
     command: ["mongod"]
 
-  # node:
-  #   # build构建 本地Dockerfile文件
-  #   build: .
-  #   ports:
-  #     - 12345:12345
-  #   depends_on:
-  #     - mongo
-  #   links:
-  #     - mongo
+  node:
+    # build构建 本地Dockerfile文件
+    build: .
+    ports:
+      - 12345:12345
+    # depends_on:
+    #   - mongo
+    links:
+      - mongo
     
