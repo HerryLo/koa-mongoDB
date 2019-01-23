@@ -1,23 +1,20 @@
 version: '3'
 services:
-  mongodb:
-    image: mongo:latest
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 123456
+  mongo:
+    image: mongo
+    volumes:
+      - "./data/:/data/db"
     ports:
       - 27017:27017
-    volumes:
-      - "./data:/data/db"
     command: ["mongod"]
 
-  node:
-    # build构建 本地Dockerfile文件
-    build: .
-    ports:
-      - 12345:12345
-    # 依赖关系
-    depends_on:
-      - mongodb
+  # node:
+  #   # build构建 本地Dockerfile文件
+  #   build: .
+  #   ports:
+  #     - 12345:12345
+  #   depends_on:
+  #     - mongo
+  #   links:
+  #     - mongo
     
