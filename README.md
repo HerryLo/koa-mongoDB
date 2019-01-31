@@ -1,10 +1,12 @@
 # koa2
 
 [![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
-  
+
   个人项目，采用koa2路由框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
-  
+
   前后端分离，[后台管理系统](https://github.com/HerryLo/vue-Bam), [Koa后端](https://github.com/HerryLo/koa-mongoDB)
+
+  系统目前包含 文章发布管理系统、标签系统、评论系统、用户系统，四大模块
 
 ## 技术栈
 使用koa+mongoose 开发;
@@ -33,7 +35,9 @@ $ npm run dev //本地测试服务
 |——server
 |  |—— config                     全局配置
 |  |—— controller                 对应路由的逻辑处理
-|  |   |—— api.js                 api 控制器 接口
+|  |   |—— article.js             文章 控制器 接口
+|  |   └── comment.js             评论 控制器 接口
+|  |   └── tag.js                 标签 控制器 接口
 |  |   └── user.js                用户 控制器 接口
 |  |—— middleware                 路由中间件
 |  |—— model                      mongoose数据库模型
