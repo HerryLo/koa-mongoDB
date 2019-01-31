@@ -1,13 +1,5 @@
 version: "2.2"
 services:
-  # node:
-  #   # build构建 本地Dockerfile文件
-  #   build: .
-  #   ports:
-  #     - 12345:12345
-  #   links:
-  #     - mongo
-
   mongo:
     image: mongo
     volumes:
@@ -15,4 +7,13 @@ services:
     ports:
       - 27017:27017
     hostname: mongodb
+
+  node:
+    # build构建 本地Dockerfile文件
+    build: .
+    command: npm run dev
+    ports:
+      - 12345:12345
+    links:
+      - mongo
     
