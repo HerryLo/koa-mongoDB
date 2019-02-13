@@ -5,6 +5,7 @@ import {
 } from '../monoose/dbConnect'
 import jwt from 'jsonwebtoken'
 import config from '../config/config'
+import { User } from '../constant'
 /**
  * user Controller
  * Post login
@@ -45,12 +46,12 @@ class UserController {
                     code: 0,
                     token,
                     user,
-                    desc: '登录成功'
+                    desc: User.LOGIN_SUCCESS
                 }
             } else {
                 ctx.body = {
                     code: 1,
-                    desc: '登录失败'
+                    desc: User.LOGIN_FAIL
                 }
             }
         } catch (err) {
@@ -79,7 +80,7 @@ class UserController {
             if (result[0]) {
                 ctx.body = {
                     code: 1,
-                    desc: '用户已存在',
+                    desc: User.USER_REGISTERED,
                     data: result[0]
                 }
             } else {
@@ -92,7 +93,7 @@ class UserController {
                 if(result) {
                     ctx.body = {
                         code: 0,
-                        desc: '注册成功',
+                        desc: User.REGISTER_SUCCESS,
                         data: {
                             user: user,
                             photo: photo
@@ -101,7 +102,7 @@ class UserController {
                 }else{
                     ctx.body = {
                         code: 0,
-                        desc: '注册失败',
+                        desc: User.REGISTER_FAIL,
                         data: {}
                     }
                 }
@@ -127,13 +128,13 @@ class UserController {
             if (result[0] && result[0].isadmin) {
                 ctx.body = {
                     code: 0,
-                    desc: "成功",
+                    desc: User.SUCCESS,
                     data: result[0]
                 }
             } else {
                 ctx.body = {
                     code: 1,
-                    desc: "用户请登录"
+                    desc: User.USER_LOGIN
                 }
             }
         } catch (err) {
@@ -151,7 +152,7 @@ class UserController {
             let data = await UserModel.findUser({});
             ctx.body = {
                 code: 0,
-                desc: '成功',
+                desc: User.SUCCESS,
                 data: data
             }
         } catch (err) {

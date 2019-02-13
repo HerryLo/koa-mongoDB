@@ -34,6 +34,9 @@ $ npm run dev //本地测试服务
 .
 |——server
 |  |—— config                     全局配置
+|  |—— constant                   常量
+|  |   |—— index.js               暴露全部常量
+|  |   └── user.js                用户常量
 |  |—— controller                 对应路由的逻辑处理
 |  |   |—— article.js             文章 控制器 接口
 |  |   └── comment.js             评论 控制器 接口
