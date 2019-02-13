@@ -4,6 +4,7 @@ import {
     ArticleModel,
     CommentModel
 } from '../monoose/dbConnect'
+import { Comment } from '../constant'
 
 /**
  * comment Controller
@@ -40,20 +41,20 @@ class CommentController {
                     ctx.body = {
                         code: 0,
                         data: result,
-                        desc: '成功'
+                        desc: Comment.SUCCESS
                     }
                 } else {
                     ctx.body = {
                         code: -1,
                         data: [],
-                        desc: '不存在的文章ID'
+                        desc: Comment.NO_ARTICLIID
                     }
                 }
             } else {
                 ctx.body = {
                     code: -1,
                     data: [],
-                    desc: '请输入评论内容'
+                    desc: Comment.NO_COMMENT_CONTENT
                 }
             }
         } catch (e) {

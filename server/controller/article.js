@@ -6,6 +6,7 @@ import {
 import {
     CreateArtimgFs
 } from '../utils/util'
+import { Article } from '../constant'
 
 /**
  * article Controller
@@ -41,13 +42,13 @@ class ArticleController {
                     code: 0,
                     totalPage: totalPage,
                     data: data,
-                    desc: '成功'
+                    desc: Article.SUCCESS
                 }
             } else {
                 ctx.body = {
                     code: 0,
                     data: {},
-                    desc: '参数错误'
+                    desc: Article.PARAM_FAIL
                 }
             }
         } catch (err) {
@@ -88,14 +89,14 @@ class ArticleController {
                 if (d) {
                     ctx.body = {
                         code: 1,
-                        desc: '添加成功',
+                        desc: Article.ADD_SUCCESS,
                         data: d
                     }
                 }
             } else {
                 ctx.body = {
                     code: 1,
-                    desc: '参数错误',
+                    desc: Article.PARAM_FAIL,
                     data: []
                 }
             }
@@ -133,14 +134,14 @@ class ArticleController {
                     ctx.body = {
                         code: 0,
                         data: [],
-                        desc: '成功'
+                        desc: Article.SUCCESS
                     }
                 }
             } else {
                 ctx.body = {
                     code: -1,
                     data: [],
-                    desc: '文章id不存在'
+                    desc: Article.NO_ARTICLIID
                 }
             }
         } catch (err) {
