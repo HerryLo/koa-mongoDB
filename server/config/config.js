@@ -12,8 +12,8 @@ const whitelist = ["http://boss.didiheng.com", "*"]
 
 export default {
     db: {
-        // url: 'mongodb://localhost:27017/test'
-        url: 'mongodb://mongodb:27017/test'
+        url: 'mongodb://localhost:27017/test'
+        // url: 'mongodb://mongodb:27017/test'
     },
     secret: 'LiuHeng9227fe78182er',
     port: process.env.port || '12345',

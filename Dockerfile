@@ -9,4 +9,4 @@ RUN yarn install
 # 端口号
 EXPOSE 12345
 # 启动 node server
-# ENTRYPOINT ["npm", "run", "dev"]
+ENTRYPOINT ["npm", "run", "dev"]

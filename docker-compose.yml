@@ -1,4 +1,4 @@
-version: "2.2"
+version: "3.1"
 services:
   mongo:
     image: mongo
@@ -6,14 +6,15 @@ services:
       - ./data/:/data/db
     ports:
       - 27017:27017
-    hostname: mongodb
+    hostname: localhost
+    restart: always
 
-  node:
-    # build构建 本地Dockerfile文件
-    build: .
-    command: npm run dev
-    ports:
-      - 12345:12345
-    links:
-      - mongo
+  # node:
+  #   # build构建 本地Dockerfile文件
+  #   build: .
+  #   command: npm run dev
+  #   ports:
+  #     - 12345:12345
+  #   depends_on:
+  #     - mongo
     
