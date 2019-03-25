@@ -10,6 +10,8 @@
   koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
 </p>
 
+---
+
   前后端分离，[后台管理系统](https://github.com/HerryLo/vue-Bam), [Koa后端](https://github.com/HerryLo/koa-mongoDB)
 
   系统目前包含 文章发布管理系统、标签系统、评论系统、用户系统，四大模块
