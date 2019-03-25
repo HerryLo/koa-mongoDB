@@ -1,11 +1,14 @@
 # koa2
 
-[![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
-![passing](https://img.shields.io/badge/build-passing-brightgreen.svg)
-![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
-![yarn](https://img.shields.io/badge/yarn-1.12.3-green.svg)
 
+[![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
+![node](https://img.shields.io/badge/node-8.11.1-green.svg)
+![yarn](https://img.shields.io/badge/yarn-1.12.3-green.svg)
+![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+
+<p align="center">
   koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
+</p>
 
   前后端分离，[后台管理系统](https://github.com/HerryLo/vue-Bam), [Koa后端](https://github.com/HerryLo/koa-mongoDB)
 
