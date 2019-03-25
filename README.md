@@ -1,8 +1,10 @@
 # koa2
 
 [![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
+![passing](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
-  个人项目，采用koa2路由框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
+  koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
 
   前后端分离，[后台管理系统](https://github.com/HerryLo/vue-Bam), [Koa后端](https://github.com/HerryLo/koa-mongoDB)
 
