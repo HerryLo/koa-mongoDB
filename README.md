@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
 ![passing](https://img.shields.io/badge/build-passing-brightgreen.svg)
 ![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+![yarn](https://img.shields.io/badge/yarn-1.12.3-green.svg)
 
   koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
 
