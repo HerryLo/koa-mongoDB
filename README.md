@@ -7,11 +7,12 @@
 ![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 <p align="center">
-  koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。(**增加ts语法支持，进行ing**)
+  koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。
 </p>
 
 ---
-
+  **增加ts语法支持，进行ing**
+  
   前后端分离，[后台管理系统](https://github.com/HerryLo/vue-Bam), [Koa后端](https://github.com/HerryLo/koa-mongoDB)
 
   系统目前包含 文章发布管理系统、标签系统、评论系统、用户系统，四大模块
