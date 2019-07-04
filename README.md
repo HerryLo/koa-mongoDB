@@ -7,7 +7,7 @@
 ![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 <p align="center">
-  koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。(目前准备将语法迁移到ts)
+  koa2框架，mongodb作为数据库，Es6/7语法编写，babel编译ES语法。(**增加ts语法支持，进行ing**)
 </p>
 
 ---
