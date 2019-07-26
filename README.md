@@ -28,16 +28,6 @@
 * babel-register编译Es6/7/8
 * esLint语法规则
 
-## 调试运行
-```
-$ yarn install 
-
-<!-- 需要开启mongoDB数据库，不然直接报错 -->
-$ mongod  //开启mongoDB
-
-$ npm run dev //本地测试服务
-```
-
 ## server下为目录结构:
 ```
 .
@@ -66,6 +56,8 @@ $ npm run dev //本地测试服务
 |  |—— utils                      公共方法
 |  |—— app.js                     app入口文件
 ```
+## Describe
+
 
 ## 调试运行
 ```
