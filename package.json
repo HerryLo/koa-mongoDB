@@ -29,8 +29,7 @@
     "supervisor": "^0.12.0"
   },
   "scripts": {
-    "watch-ts": "tsc -w",
-    "dev": "npm run watch-ts && cross-env NODE_ENV=development supervisor --harmony ./dist/index.js",
+    "dev": "cross-env NODE_ENV=development supervisor ./dist/index.js",
     "start": "cross-env NODE_ENV=production pm2 start ./dist/index.js --node-args='--harmony' --name 'koa-mongoDB --port 12345'",
     "stop": "cross-env NODE_ENV=production pm2 stop ./dist/index.js --name 'koa-mongoDB --port 12345'",
     "test": "mocha"
