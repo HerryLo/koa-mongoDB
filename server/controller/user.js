@@ -2,7 +2,7 @@
 
 import {
     UserModel
-} from '../monoose/dbConnect'
+} from '../db'
 import jwt from 'jsonwebtoken'
 import config from '../config/config'
 import { User } from '../constant'

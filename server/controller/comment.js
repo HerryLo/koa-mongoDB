@@ -3,7 +3,7 @@
 import {
     ArticleModel,
     CommentModel
-} from '../monoose/dbConnect'
+} from '../db'
 import { Comment } from '../constant'
 
 /**

@@ -4,7 +4,7 @@ import config from '../config/config'
 import jwt from 'jsonwebtoken'
 import {
     UserModel
-} from '../monoose/dbConnect'
+} from '../db'
 
 /**
  * 中间件 检查token是否失效

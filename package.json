@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/koa": "^2.0.52",
+    "@types/koa-router": "^7.0.42",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "cross-env": "^5.1.4",
@@ -18,16 +20,19 @@
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "mongoose": "^5.0.16",
-    "pm2": "^2.10.4"
+    "pm2": "^2.10.4",
+    "ts-node": "^8.5.0",
+    "typescript": "^3.7.2"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
     "supervisor": "^0.12.0"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development supervisor --harmony ./server/index.js",
-    "start": "cross-env NODE_ENV=production pm2 start ./server/index.js --node-args='--harmony' --name 'koa-mongoDB --port 12345'",
-    "stop": "cross-env NODE_ENV=production pm2 stop ./server/index.js --name 'koa-mongoDB --port 12345'",
+    "watch-ts": "tsc -w",
+    "dev": "npm run watch-ts && cross-env NODE_ENV=development supervisor --harmony ./dist/index.js",
+    "start": "cross-env NODE_ENV=production pm2 start ./dist/index.js --node-args='--harmony' --name 'koa-mongoDB --port 12345'",
+    "stop": "cross-env NODE_ENV=production pm2 stop ./dist/index.js --name 'koa-mongoDB --port 12345'",
     "test": "mocha"
   },
   "repository": {
