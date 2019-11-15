@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@types/koa": "^2.0.52",
+    "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.0.42",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
@@ -25,11 +26,10 @@
     "typescript": "^3.7.2"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
-    "supervisor": "^0.12.0"
+    "mocha": "^5.2.0"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development supervisor ./dist/index.js",
+    "dev": " cross-env NODE_ENV=development nodemon --watch 'server/**/*.js,server/**/*.ts' -e ts,tsx --exec 'ts-node' ./server/index.ts",
     "start": "cross-env NODE_ENV=production pm2 start ./dist/index.js --node-args='--harmony' --name 'koa-mongoDB --port 12345'",
     "stop": "cross-env NODE_ENV=production pm2 stop ./dist/index.js --name 'koa-mongoDB --port 12345'",
     "test": "mocha"

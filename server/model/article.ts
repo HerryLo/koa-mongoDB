@@ -94,7 +94,7 @@ async function  createArticle(ctx: Koa.Context) {
  * @param ctx 
  */
 async function  setArticle(ctx: Koa.Context) {
-    const body = ctx.request.body;
+    const { body } = ctx.request;
     try {
         const article = await ArticleModel.findArt({
             _id: body.id
@@ -104,7 +104,7 @@ async function  setArticle(ctx: Koa.Context) {
             // 创建标签
             await settag(ctx)
             // 检查参数是否正确
-            const checkBool = await this.checkArtparam(body);
+            const checkBool = await checkArtparam(body);
             if(checkBool){
                 // 将图片保存到public
                 const imgName = await CreateArtimgFs(body.files.file);
