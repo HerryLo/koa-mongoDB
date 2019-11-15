@@ -1,14 +1,13 @@
-import {
-    TagModel
-} from '../db'
+// @ts-ignore
+import { TagModel } from '../db'
 
-console.log(12)
+import * as Koa from "koa"
 
 /**
  * 创建tag标签
  * @param {*} ctx 
  */
-export async function  createtag(ctx) {
+async function createtag(ctx: Koa.Context) {
     const tags = ctx.request.body.fields.tag
     const {
         id
@@ -17,15 +16,18 @@ export async function  createtag(ctx) {
         const result = TagModel.findTag({
             createUserId: id
         })
-        if(result.length == 0){
+        if (result.length == 0) {
             const tagList = tags;
-            tagList.map(async (item) => {
+            tagList.map(async (item: string) => {
                 await TagModel.createtag({
                     content: item,
                     createUserId: id,
                     useNumber: 0,
                 })
             })
+        }
+        return {
+            code: 0
         }
     } catch (err) {
         ctx.throw(err);
@@ -36,14 +38,19 @@ export async function  createtag(ctx) {
  * 修改标签
  * @param {*} ctx 
  */
-export async function settag(ctx) {
+async function settag(ctx: Koa.Context) {
     const {
         id
     } = ctx.state
     const result = TagModel.findTag({
-        createUserId: id 
+        createUserId: id
     })
-    if(result.length > 0){
-        console.log(12);
+    if (result.length > 0) {
+        
     }
+}
+
+export {
+    settag,
+    createtag
 }

@@ -5,6 +5,8 @@ import {
     settag 
 } from '../model/tag'
 
+import * as Koa from "koa"
+
 /**
  * tag Controller
  * Create Tag
@@ -22,15 +24,16 @@ class TagController {
      * @param {*} ctx 
      * @param {*} next 
      */
-    async createtag(ctx) {
+    async createtag(ctx: Koa.Context) {
         createtag(ctx)
     }
 
     /**
      * 修改标签
      */
-    async settag(ctx) {
+    async settag(ctx: Koa.Context) {
         settag(ctx)
+
     }
 }
 

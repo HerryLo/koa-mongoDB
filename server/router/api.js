@@ -1,6 +1,5 @@
 import ArticleController from '../controller/article'
 import CommentController from '../controller/comment'
-import TagController from '../controller/tag'
 import UserController from '../controller/user'
 import Router from 'koa-router'
 const Api = new Router();
