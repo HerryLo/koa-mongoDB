@@ -12,6 +12,7 @@ import * as Koa from "koa"
  * 获取文章列表
  * @param ctx 
  */
+function getArticleList(ctx: Koa.Context) : void
 async function getArticleList(ctx: Koa.Context) {
     try {
         const body = ctx.request.body
@@ -45,7 +46,8 @@ async function getArticleList(ctx: Koa.Context) {
  * 创建文章
  * @param ctx 
  */
-async function  createArticle(ctx: Koa.Context) {
+function createArticle(ctx: Koa.Context) : void
+async function createArticle(ctx: Koa.Context) {
     const {
         id,
         user
@@ -93,6 +95,7 @@ async function  createArticle(ctx: Koa.Context) {
  * 修改文章
  * @param ctx 
  */
+function setArticle(ctx: Koa.Context) : void
 async function  setArticle(ctx: Koa.Context) {
     const { body } = ctx.request;
     try {
@@ -138,6 +141,7 @@ async function  setArticle(ctx: Koa.Context) {
  * 检查创建文章参数
  * @param {*} ctx 
  */
+function checkArtparam(body: any) : void
 function checkArtparam(body: any) {
     if (!body.fields && !body.files.file) return false;
     const data = body && body.fields;
