@@ -75,6 +75,3 @@ $ npm run dev //本地测试服务
 ## LICENSE
 [MIT](https://github.com/HerryLo/koa-mongoDB/blob/master/LICENSE)
 
-### vx备注 加群交流
-
-<img width="300" height="300" center src="https://didiheng.com/image/IMG_0574.JPG" />
