@@ -1,7 +1,5 @@
 # koa2
 
-
-[![Build Status](https://travis-ci.org/HerryLo/koa-mongoDB.svg?branch=master)](https://travis-ci.org/HerryLo/koa-mongoDB)
 ![node](https://img.shields.io/badge/node-8.11.1-green.svg)
 ![yarn](https://img.shields.io/badge/yarn-1.12.3-green.svg)
 ![MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
