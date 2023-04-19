@@ -54,8 +54,6 @@
 |  |—— utils                      公共方法
 |  |—— app.js                     app入口文件
 ```
-## Describe
-
 
 ## 调试运行
 ```
